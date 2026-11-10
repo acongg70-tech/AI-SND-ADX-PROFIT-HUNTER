@@ -8,41 +8,38 @@
 <title>AI SND ADX PROFIT HUNTER</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101827;color:#e5edf8;font-family:Arial,sans-serif;padding:16px}
-h2{color:#38bdf8;margin:5px 0}
-p{color:#9caec4;font-size:13px}
-.card{background:#1c293b;border:1px solid #34445b;border-radius:13px;padding:15px;margin:13px 0}
-label{display:block;font-size:13px;color:#b9c9dc;margin:12px 0 5px}
+body{margin:0;padding:15px;background:#101827;color:#e5edf8;font-family:Arial,sans-serif}
+h2{color:#38bdf8}
+p,small{color:#a9bad0;font-size:13px}
+.card{background:#1c293b;border:1px solid #34445b;border-radius:12px;padding:14px;margin:13px 0}
+label{display:block;margin:12px 0 5px;font-size:13px;color:#b9c9dc}
 input,select{width:100%;padding:12px;background:#0d1726;color:white;border:1px solid #43546c;border-radius:8px;font-size:16px}
-button{width:100%;padding:14px;border:0;border-radius:9px;background:#0284c7;color:white;font-size:16px;font-weight:bold;margin-top:15px}
-.result{text-align:center;padding:18px;border-radius:10px;background:#0d1726}
+button{width:100%;padding:14px;background:#0284c7;color:white;border:0;border-radius:9px;font-size:16px;font-weight:bold;margin-top:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.value{font-size:19px;color:#38bdf8;font-weight:bold}
+.result{text-align:center;background:#0d1726;border-radius:10px;padding:18px}
 .signal{font-size:30px;font-weight:bold;margin:10px}
 .green{color:#4ade80}.red{color:#fb7185}.yellow{color:#facc15}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.value{font-size:19px;font-weight:bold;color:#38bdf8}
-small{color:#9caec4}
 </style>
 </head>
 <body>
-
 <h2>⚡ AI SND ADX</h2>
 <h3>PROFIT HUNTER</h3>
-<p>Supply & Demand • EMA50 • ADX • Risk Management</p>
+<p>Supply & Demand • ADX Balanced • EMA50 Guide • TP3</p>
 
 <div class="card">
-<h3>1. PILIH INSTRUMEN</h3>
+<h3>1. INSTRUMEN & HARGA</h3>
 <select id="asset">
 <option>XAUUSD - GOLD</option>
 <option>WTI - CRUDE OIL</option>
 </select>
-<label>Harga semasa</label>
+<label>Harga semasa / harga candle tutup</label>
 <input id="price" type="number" step="any" placeholder="Masukkan harga">
-<label>Timeframe candle</label>
+<label>Timeframe</label>
 <select id="tf">
-<option>M5</option><option>M1</option>
-<option>M15</option><option>M30</option>
+<option>M5</option><option>M1</option><option>M15</option><option>M30</option>
 </select>
-<label>Keadaan candle yang sudah tutup</label>
+<label>Candle yang sudah tutup</label>
 <select id="candle">
 <option value="bull">Bullish</option>
 <option value="bear">Bearish</option>
@@ -51,43 +48,39 @@ small{color:#9caec4}
 
 <div class="card">
 <h3>2. SUPPLY & DEMAND</h3>
-<label>Demand Zone - Low</label>
-<input id="dl" type="number" step="any" placeholder="Contoh 84.70">
-<label>Demand Zone - High</label>
-<input id="dh" type="number" step="any" placeholder="Contoh 84.80">
-<label>Supply Zone - Low</label>
-<input id="sl" type="number" step="any" placeholder="Contoh 85.30">
-<label>Supply Zone - High</label>
-<input id="sh" type="number" step="any" placeholder="Contoh 85.40">
+<label>Demand Low</label>
+<input id="dl" type="number" step="any" placeholder="Demand bawah">
+<label>Demand High</label>
+<input id="dh" type="number" step="any" placeholder="Demand atas">
+<label>Supply Low</label>
+<input id="sl" type="number" step="any" placeholder="Supply bawah">
+<label>Supply High</label>
+<input id="sh" type="number" step="any" placeholder="Supply atas">
 </div>
 
 <div class="card">
-<h3>3. EMA50 & ADX</h3>
-<label>EMA50</label>
-<input id="ema" type="number" step="any" placeholder="Masukkan nilai EMA50">
+<h3>3. ADX & EMA50</h3>
+<label>ADX (14)</label>
+<input id="adx" type="number" step="any" placeholder="Contoh 22">
+<label>EMA50 (panduan sahaja)</label>
+<input id="ema" type="number" step="any" placeholder="Boleh kosong">
 <div class="grid">
 <div>
-<label>ADX</label>
-<input id="adx" type="number" step="any" placeholder="18">
-</div>
-<div>
 <label>DI+</label>
-<input id="dip" type="number" step="any" placeholder="25">
+<input id="dip" type="number" step="any" placeholder="Boleh kosong">
 </div>
 <div>
 <label>DI-</label>
-<input id="dim" type="number" step="any" placeholder="15">
+<input id="dim" type="number" step="any" placeholder="Boleh kosong">
 </div>
-<div>
+</div>
 <label>SL Buffer</label>
 <input id="buffer" type="number" step="any" value="0.05">
-</div>
-</div>
-<p>EMA50 sebagai panduan, bukan syarat wajib entry.</p>
+<p>ADX 18 ke atas: momentum lebih memadai. EMA50 dan DI hanya maklumat sokongan.</p>
 </div>
 
 <div class="card">
-<h3>4. ANALISIS PASAR</h3>
+<h3>4. ANALISIS MARKET</h3>
 <button onclick="analyse()">ANALYSE MARKET</button>
 <div class="result" style="margin-top:15px">
 <small>KEPUTUSAN SND ADX</small>
@@ -104,24 +97,25 @@ small{color:#9caec4}
 <div><small>TAKE PROFIT 1</small><div class="value" id="tp1">--</div></div>
 <div><small>TAKE PROFIT 2</small><div class="value" id="tp2">--</div></div>
 <div><small>TAKE PROFIT 3</small><div class="value" id="tp3">--</div></div>
-<div><small>RISK : REWARD</small><div class="value">1:1 / 1:2 / 1:3</div></div>
+<div><small>RISK REWARD</small><div class="value">1:1 / 1:2 / 1:3</div></div>
 </div>
 </div>
 
 <div class="card">
-<h3>6. MULTI TIMEFRAME</h3>
-<p>Masukkan arah trend berdasarkan indikator TradingView.</p>
+<h3>6. MULTI TIMEFRAME TREND</h3>
+<p>Pilih trend setiap timeframe berdasarkan carta.</p>
 <div class="grid" id="trends"></div>
+<div id="mtfSummary"></div>
 </div>
 
 <div class="card">
-<h3>⚠️ PENGURUSAN RISIKO</h3>
-<p>Signal ini ialah bantuan analisis, bukan jaminan keuntungan. Semak spread, saiz lot dan risiko akaun sebelum entry. Tiada order dihantar ke MT5.</p>
+<h3>⚠️ RISK MANAGEMENT</h3>
+<p>Analisis ini menggunakan input manual. Ia bukan harga live, bukan jaminan keuntungan dan tidak menghantar order ke MT5. Semak spread dan saiz lot sebelum entry.</p>
 </div>
 
 <script>
-const ids=['M5','M15','M30','H1','H4'];
-document.getElementById('trends').innerHTML=ids.map(t=>
+const tfs=['M5','M15','M30','H1','H4'];
+document.getElementById('trends').innerHTML=tfs.map(t=>
 `<div><label>${t} TREND</label>
 <select id="trend${t}">
 <option value="WAIT">WAIT</option>
@@ -129,67 +123,85 @@ document.getElementById('trends').innerHTML=ids.map(t=>
 <option value="BEARISH">BEARISH</option>
 </select></div>`).join('');
 
-function num(id){return Number(document.getElementById(id).value)}
-function fmt(n){return Number.isFinite(n)?n.toFixed(3):'--'}
+function getNum(id){
+ const v=document.getElementById(id).value.trim();
+ return v===''?null:Number(v);
+}
+function fmt(v){return Number.isFinite(v)?v.toFixed(3):'--';}
 
 function analyse(){
-const p=num('price'),dl=num('dl'),dh=num('dh');
-const sl=num('sl'),sh=num('sh'),ema=num('ema');
-const adx=num('adx'),dip=num('dip'),dim=num('dim');
-const buf=num('buffer');
-const candle=document.getElementById('candle').value;
-const valid=['price','dl','dh','sl','sh','ema','adx','dip','dim','buffer']
-.every(id=>document.getElementById(id).value.trim()!=='') &&
-[p,dl,dh,sl,sh,ema,adx,dip,dim,buf].every(Number.isFinite) &&
-p>0 && dl<=dh && sl<=sh && buf>=0;
+ const p=getNum('price'),dl=getNum('dl'),dh=getNum('dh');
+ const sl=getNum('sl'),sh=getNum('sh');
+ const adx=getNum('adx'),ema=getNum('ema');
+ const dip=getNum('dip'),dim=getNum('dim');
+ const buf=getNum('buffer');
+ const candle=document.getElementById('candle').value;
 
-if(!valid){
-alert('Sila isi semua data dengan betul.');
-return;
-}
+ const required=[p,dl,dh,sl,sh,adx,buf];
+ if(required.some(v=>v===null||!Number.isFinite(v))||
+ p<=0||dl>dh||sl>sh||adx<0||buf<0){
+  alert('Sila isi harga, zon Demand/Supply, ADX dan SL Buffer dengan betul.');
+  return;
+ }
+ if([ema,dip,dim].some(v=>v!==null&&!Number.isFinite(v))){
+  alert('Nilai EMA atau DI tidak sah.');
+  return;
+ }
 
-const inDemand=p>=dl && p<=dh;
-const inSupply=p>=sl && p<=sh;
-const buy=inDemand && candle==='bull' && dip>dim;
-const sell=inSupply && candle==='bear' && dim>dip;
+ const inDemand=p>=dl&&p<=dh;
+ const inSupply=p>=sl&&p<=sh;
+ let direction='WAIT',reason='Belum ada pengesahan candle dalam zon SND.';
+ let entry=0,stop=0,risk=0;
 
-let direction='WAIT',reason='Belum ada pengesahan entry SND.';
-let entry=0,stop=0,risk=0;
+ if(inDemand&&inSupply){
+  reason='Zon Demand dan Supply bertindih. Elakkan entry.';
+ }else if(inDemand&&candle==='bull'){
+  direction='BUY';
+  entry=p;stop=dl-buf;risk=entry-stop;
+  reason='BUY: candle bullish tutup di dalam Demand.';
+ }else if(inSupply&&candle==='bear'){
+  direction='SELL';
+  entry=p;stop=sh+buf;risk=stop-entry;
+  reason='SELL: candle bearish tutup di dalam Supply.';
+ }
 
-if(buy && sell){
-reason='Zon bertindih. Elakkan entry.';
-}else if(buy){
-direction='BUY';
-entry=p;
-stop=dl-buf;
-risk=entry-stop;
-reason='Harga dalam Demand + candle bullish + DI+ mengatasi DI-.';
-}else if(sell){
-direction='SELL';
-entry=p;
-stop=sh+buf;
-risk=stop-entry;
-reason='Harga dalam Supply + candle bearish + DI- mengatasi DI+.';
-}
+ if(risk<=0&&direction!=='WAIT'){
+  direction='WAIT';
+  reason='Risiko SL tidak sah. Semak harga dan zon.';
+ }
 
-const el=document.getElementById('signal');
-el.textContent=direction;
-el.className='signal '+(direction==='BUY'?'green':direction==='SELL'?'red':'yellow');
-document.getElementById('reason').textContent=
-reason+' ADX: '+adx+(adx<18?' (Momentum lemah)':' (Momentum memadai)')+
-'. EMA50: '+(p>ema?'Harga di atas EMA':p<ema?'Harga di bawah EMA':'Harga pada EMA')+'.';
+ const el=document.getElementById('signal');
+ el.textContent=direction;
+ el.className='signal '+(direction==='BUY'?'green':direction==='SELL'?'red':'yellow');
 
-['entry','stop','tp1','tp2','tp3'].forEach(id=>
-document.getElementById(id).textContent='--');
+ let info=' ADX '+adx+(adx>=18?' - momentum memadai.':' - momentum lemah, berhati-hati.');
+ if(ema!==null)info+=' EMA50: '+(p>ema?'harga di atas':'harga di bawah')+' EMA.';
+ if(dip!==null&&dim!==null)info+=' DI+: '+dip+' | DI-: '+dim+'.';
 
-if(direction!=='WAIT' && risk>0){
-document.getElementById('entry').textContent=fmt(entry);
-document.getElementById('stop').textContent=fmt(stop);
-[1,2,3].forEach(r=>{
-const target=direction==='BUY'?entry+r*risk:entry-r*risk;
-document.getElementById('tp'+r).textContent=fmt(target);
-});
-}
+ const ups=[],downs=[];
+ tfs.forEach(t=>{
+  const v=document.getElementById('trend'+t).value;
+  if(v==='BULLISH')ups.push(t);
+  if(v==='BEARISH')downs.push(t);
+ });
+ document.getElementById('mtfSummary').textContent=
+ 'Trend bullish: '+(ups.join(', ')||'tiada')+
+ ' | Trend bearish: '+(downs.join(', ')||'tiada');
+
+ document.getElementById('reason').textContent=reason+info;
+
+ ['entry','stop','tp1','tp2','tp3'].forEach(id=>{
+  document.getElementById(id).textContent='--';
+ });
+
+ if(direction!=='WAIT'){
+  document.getElementById('entry').textContent=fmt(entry);
+  document.getElementById('stop').textContent=fmt(stop);
+  [1,2,3].forEach(r=>{
+   const target=direction==='BUY'?entry+r*risk:entry-r*risk;
+   document.getElementById('tp'+r).textContent=fmt(target);
+  });
+ }
 }
 </script>
 </body>
